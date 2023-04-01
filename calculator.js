@@ -34,12 +34,12 @@ function getTipPercentage() {
         return parseFloat(tipButton.textContent);
       }
       // Get custom tip percentage
-      const customTipPercentage = parseFloat(document.querySelector('.Custom').value);
-      if (!isNaN(customTipPercentage)) {
-        return customTipPercentage;
-      }
-      // Default to 0% if no percentage is selected
-      return 0;
+      // const customTipPercentage = parseFloat(document.querySelector('.Custom').value);
+      // if (!isNaN(customTipPercentage)) {
+      //   return customTipPercentage;
+      // }
+      // // Default to 0% if no percentage is selected
+      // return 0;
 }
 
   // Attach event listeners to tip buttons
@@ -54,7 +54,7 @@ function getTipPercentage() {
       this.classList.add("selected");
 
     //   Clear custom tip percentage input
-      document.getElementById("custom").value = "";
+      // document.getElementById("custom").value = "";
     });
   }
 calculate.addEventListener('click', calculateAll)
@@ -68,7 +68,7 @@ function resetBtn(){
     document.querySelector('.amount').value = '';
     document.querySelector('.multiplyPeople').value = '';
     document.querySelector('.custom').value = '';
-    tipButtons.classList.remove("selected")
+    // tipButtons.classList.remove("selected")
 }
 reset.addEventListener('click', resetBtn)
 
