@@ -1,29 +1,35 @@
 
 let reset = document.querySelector('.reset');
 let calculate = document.querySelector('.calculate');
+let amount = document.querySelector('.amount');
+let plusPeople = document.querySelector('.multiplyPeople');
+let amountPerPerson = document.querySelector('#amountPerson')
+let totalPerPerson = document.querySelector('#totalPerson')
+let custom = document.querySelector('.custom')
 
-
+amount.value = 0
+plusPeople.value = 1
 
 function calculateAll () {
-// Get input values
-let amount = parseFloat(document.querySelector('.amount').value);
-let plusPeople = parseFloat(document.querySelector('.multiplyPeople').value);
 
+let billAmount = parseFloat(amount.value)
+let people = parseFloat(plusPeople.value)
 
 const tipPercentage = getTipPercentage();
 
 // Calculate tip amount
-const tipAmount = amount * (tipPercentage / 100);
+const tipAmount = billAmount * (tipPercentage / 100);
 
 // Calculate amount per person
-
-const perPerson = amount + tipAmount
+const perPerson = billAmount + tipAmount;
 
 // Calculate total amount
-const totalAmount = plusPeople * (amount + tipAmount) ;
+const totalAmount = people * perPerson;
 
-document.querySelector('#amountPerson').textContent = perPerson
-document.querySelector('#totalPerson').textContent = totalAmount
+// amountPerPerson.textContent = perPerson
+totalPerPerson.textContent = '$' + totalAmount
+amountPerPerson.textContent = '$' + perPerson
+
 } 
 
 // Function to get tip percentage
@@ -34,12 +40,12 @@ function getTipPercentage() {
         return parseFloat(tipButton.textContent);
       }
       // Get custom tip percentage
-      // const customTipPercentage = parseFloat(document.querySelector('.Custom').value);
-      // if (!isNaN(customTipPercentage)) {
-      //   return customTipPercentage;
-      // }
-      // // Default to 0% if no percentage is selected
-      // return 0;
+      const customTipPercentage = parseFloat(custom.value);
+      if (!isNaN(customTipPercentage)) {
+        return customTipPercentage;
+      }
+      // Default to 0% if no percentage is selected
+      return 0;
 }
 
   // Attach event listeners to tip buttons
@@ -52,24 +58,24 @@ function getTipPercentage() {
       }
       // Select clicked button
       this.classList.add("selected");
-
-    //   Clear custom tip percentage input
-      // document.getElementById("custom").value = "";
     });
   }
 calculate.addEventListener('click', calculateAll)
 
 
 
+
 // Reset selected input
 function resetBtn(){
-    document.querySelector('#amountPerson').textContent = '$0.00';
-    document.querySelector('#totalPerson').textContent = '$0.00';
-    document.querySelector('.amount').value = '';
-    document.querySelector('.multiplyPeople').value = '';
-    document.querySelector('.custom').value = '';
-    // tipButtons.classList.remove("selected")
-}
+    amountPerPerson.textContent = '$0';
+    totalPerPerson.textContent = '$0';
+    amount.value = 0;
+    plusPeople.value = 1;
+    custom.value = '';
+    for (let j = 0; j < tipButtons.length; j++) {
+      tipButtons[j].classList.remove("selected");
+    }
+  }
 reset.addEventListener('click', resetBtn)
 
 

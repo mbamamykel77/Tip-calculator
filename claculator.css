@@ -164,7 +164,10 @@ body{
     background-color: hsl(185, 41%, 84%);
 
 } 
-
+.personTotal.selected{
+    background-color: red;
+    color: black;
+}
 
 /* desktop view */
 @media (min-width: 760px){
